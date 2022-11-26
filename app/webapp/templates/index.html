@@ -10,11 +10,15 @@
     <div class="imgs_block">
         {% for p in photos %}
         <div class="img_item">
-            <a href="">
+            <a href="{% url 'photo' p.pk %}">
                 <img class="img" src="{{ p.image.url }}" alt="">
                 <p class="created_date">Добавлена: <b>{{ p.created_at|date:"d-M-Y H:i" }}</b></p>
                 <p>Автор: <b>{{ p.author }}</b></p>
                 <p>Подпись: <b>{{ p.signature }}</b></p>
+                <form action="">
+                    {% csrf_token %}
+
+                </form>
             </a>
         </div>
         {% endfor %}

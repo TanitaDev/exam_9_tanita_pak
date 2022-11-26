@@ -22,3 +22,7 @@ p {
     margin-bottom: 7px;
     color: #474747;
 }
+
+.img_detail img {
+    width: 400px;
+}
