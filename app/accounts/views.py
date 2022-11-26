@@ -6,6 +6,7 @@ from django.views.generic import TemplateView, CreateView, DetailView
 
 from accounts.forms import LoginForm, MyUserCreationForm
 from accounts.models import Profile
+from webapp.models import Favourite
 
 
 class LoginView(TemplateView):
@@ -65,3 +66,9 @@ class UserDetailView(LoginRequiredMixin, DetailView):
     model = get_user_model()
     template_name = 'profile.html'
     context_object_name = 'user_obj'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        user = self.get_object()
+        context['favs'] = Favourite.objects.filter(user=user)
+        return context

@@ -10,6 +10,10 @@ class Photo(models.Model):
     author = models.ForeignKey(
         get_user_model(), verbose_name='Автор', related_name='photos', on_delete=models.CASCADE, blank=False, null=False
     )
+    users = models.ManyToManyField(through='webapp.Favourite', to=User, related_name='us_photos')
+
+    def __str__(self):
+        return f'{self.image} {self.author}'
 
 
 class Favourite(models.Model):

@@ -12,7 +12,10 @@
         <p>Имя пользователя: <b>{{ user_obj.username }}</b></p>
         <div class="photo_block">
             <h4>Избранные фото:</h4>
-
+            {% for f in favs.all %}
+            <img class="img" src="{{ f.photo.url }}" alt="">
+            <p>{{ f.photo }}</p>
+            {% endfor %}
         </div>
     </div>
 </div>
