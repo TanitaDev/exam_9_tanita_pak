@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
-{% block title %}Главная{% endblock %}
+{% block title %}Фото{% endblock %}
 
 {% block header_block %}
 {% endblock %}
@@ -14,8 +14,8 @@
         <p>Подпись: <b>{{ photo.signature }}</b></p>
         <form action="">
             {% csrf_token %}
-
         </form>
+        <a href="{% url 'update' photo.pk %}">Редактировать</a>
     </div>
 </div>
 {% endblock %}
