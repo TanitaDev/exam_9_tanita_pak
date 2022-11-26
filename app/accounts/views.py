@@ -1,7 +1,8 @@
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate, login, logout, get_user_model
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import redirect
 from django.urls import reverse
-from django.views.generic import TemplateView, CreateView
+from django.views.generic import TemplateView, CreateView, DetailView
 
 from accounts.forms import LoginForm, MyUserCreationForm
 
@@ -56,3 +57,9 @@ class RegisterView(CreateView):
         if not next_url:
             next_url = reverse('index')
         return next_url
+
+
+class UserDetailView(LoginRequiredMixin, DetailView):
+    model = get_user_model()
+    template_name = 'profile.html'
+    context_object_name = 'user_obj'

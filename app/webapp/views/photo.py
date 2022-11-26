@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse, reverse_lazy
 from django.views.generic import DetailView, CreateView, UpdateView, DeleteView
 
@@ -11,7 +12,7 @@ class PhotoDetail(DetailView):
     context_object_name = 'photo'
 
 
-class CreatePhoto(CreateView):
+class CreatePhoto(LoginRequiredMixin, CreateView):
     template_name = 'create_photo.html'
     model = Photo
     form_class = PhotoForm

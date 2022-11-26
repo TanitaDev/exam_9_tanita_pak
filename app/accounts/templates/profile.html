@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load bootstrap5 %}
+{% load static %}
+{% block title %}Личный кабинет{% endblock %}
+
+{% block header_block %}
+{% endblock %}
+
+{% block photo_block %}
+<div class="container">
+    <div class="login_photo_block">
+        <p>{{ user_obj.username }}</p>
+    </div>
+</div>
+{% endblock %}

@@ -16,6 +16,7 @@
             <li><a href="{% url 'index' %}"><i class="fa-solid fa-house-user"></i> На главную</a></li>
             {% if user.is_authenticated %}
             <li><a href="{% url 'create' %}">Добавить фото</a></li>
+            <li><a href="{% url 'profile' user.pk %}">Личный кабинет</a></li>
             <li>
                 <form action="{% url 'logout' %}" method="post">
                     {% csrf_token %}
