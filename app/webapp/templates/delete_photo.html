@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load bootstrap5 %}
+{% load static %}
+{% block title %}Добавить{% endblock %}
+
+{% block header_block %}
+{% endblock %}
+
+{% block photo_block %}
+<div class="container">
+    <div class="delete_photo_block">
+        <form action="{% url 'delete' photo.pk %}" method="post">
+            {% csrf_token %}
+            {% bootstrap_button button_type='submit' content='Удалить' %}
+            <a href="{% url 'photo' photo.pk %}">Не удалять</a>
+        </form>
+    </div>
+</div>
+{% endblock %}

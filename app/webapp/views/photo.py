@@ -1,5 +1,5 @@
-from django.urls import reverse
-from django.views.generic import DetailView, CreateView, UpdateView
+from django.urls import reverse, reverse_lazy
+from django.views.generic import DetailView, CreateView, UpdateView, DeleteView
 
 from webapp.forms import PhotoForm
 from webapp.models import Photo
@@ -28,3 +28,10 @@ class UpdatePhoto(UpdateView):
 
     def get_success_url(self):
         return reverse('photo', kwargs={'pk': self.object.pk})
+
+
+class DeletePhoto(DeleteView):
+    template_name = 'delete_photo.html'
+    model = Photo
+    context_object_name = 'photo'
+    success_url = reverse_lazy('index')

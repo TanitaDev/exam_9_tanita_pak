@@ -16,6 +16,7 @@
             {% csrf_token %}
         </form>
         <a href="{% url 'update' photo.pk %}">Редактировать</a>
+        <a href="{% url 'delete' photo.pk %}">Удалить</a>
     </div>
 </div>
 {% endblock %}
