@@ -14,20 +14,22 @@
     <div class="header_body">
         <ul>
             <li><a href="{% url 'index' %}"><i class="fa-solid fa-house-user"></i> На главную</a></li>
+            {% if user.is_authenticated %}
+            <li><a href="{% url 'create' %}">Добавить фото</a></li>
             <li>
-                <p></p>
-                <form action="" method="post">
-                    <p class="username_p"></p>
+                <form action="{% url 'logout' %}" method="post">
+                    {% csrf_token %}
                     <a>
                         <i class="fa-solid fa-right-from-bracket"></i> <input class="logout_btn" type="submit"
                                                                               value="Выход">
                     </a>
                 </form>
             </li>
-            <li><a class="login_btn" href=""><i class="fa-solid fa-right-to-bracket"></i> Вход</a></li>
-            <li><a class="login_btn" href=""><i class="fa-solid fa-user-plus"></i> Регистрация</a>
+            {% else %}
+            <li><a class="login_btn" href="{% url 'login' %}"><i class="fa-solid fa-right-to-bracket"></i> Вход</a></li>
+            <li><a class="login_btn" href="{% url 'register' %}"><i class="fa-solid fa-user-plus"></i> Регистрация</a>
             </li>
-            <li><a href="{% url 'create' %}">Добавить фото</a></li>
+            {% endif %}
         </ul>
         {% block header_block %}
         {% endblock %}
