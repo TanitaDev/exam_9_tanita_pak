@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load bootstrap5 %}
 {% load static %}
 {% block title %}Главная{% endblock %}
 
@@ -12,14 +13,17 @@
         <div class="img_item">
             <a href="{% url 'photo' p.pk %}">
                 <img class="img" src="{{ p.image.url }}" alt="">
+            </a>
+            <div class="content">
                 <p class="created_date">Добавлена: <b>{{ p.created_at|date:"d-M-Y H:i" }}</b></p>
                 <p>Автор: <b>{{ p.author }}</b></p>
                 <p>Подпись: <b>{{ p.signature }}</b></p>
-                <form action="">
+                <form action="{% url 'favourite' p.pk %}">
                     {% csrf_token %}
-
+                    {% bootstrap_form favourite_form %}
+                    {% bootstrap_button button_type='submit' content='Добавить в избранное' %}
                 </form>
-            </a>
+            </div>
         </div>
         {% endfor %}
     </div>

@@ -1,15 +1,15 @@
 from django.contrib import admin
 
-from webapp.models import Photo, Favorite
+from webapp.models import Photo, Favourite
 
 
 class PhotoAdmin(admin.ModelAdmin):
     list_display = ['id', 'image', 'signature', 'author', 'created_at']
 
 
-class FavoriteAdmin(admin.ModelAdmin):
-    list_display = ['id', 'user', 'image']
+class FavouriteAdmin(admin.ModelAdmin):
+    list_display = ['id', 'user', 'photo']
 
 
 admin.site.register(Photo, PhotoAdmin)
-admin.site.register(Favorite, FavoriteAdmin)
+admin.site.register(Favourite, FavouriteAdmin)

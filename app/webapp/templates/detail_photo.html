@@ -7,16 +7,22 @@
 
 {% block photo_block %}
 <div class="container">
-    <div class="img_detail">
-        <img class="" src="{{ photo.image.url }}" alt="">
-        <p class="created_date">Добавлена: <b>{{ photo.created_at|date:"d-M-Y H:i" }}</b></p>
+    <div class="img_item">
+        <img class="img" src="{{ photo.image.url }}" alt="">
+        <div class="content">
+             <p class="created_date">Добавлена: <b>{{ photo.created_at|date:"d-M-Y H:i" }}</b></p>
         <p>Автор: <b>{{ photo.author }}</b></p>
         <p>Подпись: <b>{{ photo.signature }}</b></p>
         <form action="">
             {% csrf_token %}
         </form>
-        <a href="{% url 'update' photo.pk %}">Редактировать</a>
-        <a href="{% url 'delete' photo.pk %}">Удалить</a>
+        {% if perms.webapp.change_photo or article.author == request.user %}
+        <a class="btn btn-success" href="{% url 'update' photo.pk %}">Редактировать</a>
+        {% endif %}
+        {% if perms.webapp.delete_photo or article.author == request.user %}
+        <a class="btn btn-danger" href="{% url 'delete' photo.pk %}">Удалить</a>
+        {% endif %}
+        </div>
     </div>
 </div>
 {% endblock %}

@@ -9,4 +9,8 @@ class PhotoForm(forms.ModelForm):
 
     class Meta:
         model = Photo
-        fields = ['image', 'signature', 'author']
+        exclude = ['author']
+
+
+class FavouriteForm(forms.Form):
+    note = forms.CharField(max_length=50, required=True, label='Избранное')
