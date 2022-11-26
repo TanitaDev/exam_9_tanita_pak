@@ -1,10 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Главная{% endblock %}
 
-</body>
-</html>
+{% block header_block %}
+{% endblock %}
+
+{% block photo_block %}
+<div class="container">
+    <div class="imgs_block">
+        {% for p in photos %}
+        <div class="img_item">
+            <a href="">
+                <img class="img" src="{{ p.image.url }}" alt="">
+                <p class="created_date">Добавлена: <b>{{ p.created_at|date:"d-M-Y H:i" }}</b></p>
+                <p>Автор: <b>{{ p.author }}</b></p>
+                <p>Подпись: <b>{{ p.signature }}</b></p>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

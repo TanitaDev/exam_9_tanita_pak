@@ -4,7 +4,7 @@ from django.db import models
 
 
 class Photo(models.Model):
-    image = models.ImageField(verbose_name='Фото', upload_to='uploads/img', blank=False, null=False)
+    image = models.ImageField(verbose_name='Фото', upload_to='img', blank=False, null=False)
     signature = models.CharField(verbose_name='Подпись', max_length=1000, blank=False, null=False)
     created_at = models.DateTimeField(verbose_name="Время создания", auto_now_add=True)
     author = models.ForeignKey(
